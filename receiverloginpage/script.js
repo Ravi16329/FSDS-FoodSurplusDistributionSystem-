@@ -55,27 +55,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1500);
   });
 
-  // Login Form
-  const loginForm = document.getElementById("loginForm");
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value.trim();
+  //Login Formm
+const loginForm = document.getElementById("loginForm");
 
-    const validUser = users.find(u => u.email === email && u.password === password);
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+  const loadingScreen = document.getElementById("loadingScreen");
 
-    if (validUser) {
-      showMessage("🎉 Login successful! Redirecting...", "success");
+  const validUser = users.find(u => u.email === email && u.password === password);
 
-      // Wait 1.5 seconds for the message to show, then redirect
-      setTimeout(() => {
-        // Make sure the folder name is correct: "receiver"
-        window.location.href = "../reciever/index.html"; 
-      }, 1500);
+  if (validUser) {
+    // Hide login form and show spinner
+    document.querySelector(".carousel-form-overlay .form-container").style.display = "none";
+    loadingScreen.style.display = "flex";
 
-    } else {
-      showMessage("❌ Invalid username or password. Try again.", "error");
-    }
-  });
+    // Show spinner for 2 seconds, then redirect
+    setTimeout(() => {
+      window.location.href = "../reciever/index.html";
+    }, 1500);
+
+  } else {
+    showMessage("❌ Invalid username or password. Try again.", "error");
+  }
+});
+
+
 
 });

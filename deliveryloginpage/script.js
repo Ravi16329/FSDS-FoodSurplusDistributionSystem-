@@ -1,4 +1,4 @@
-// Load users from localStorage or use predefined credentials
+// Predefined users or from localStorage
 let users = JSON.parse(localStorage.getItem("users")) || [
   { email: "ravi", password: "ravi" },
   { email: "sravan", password: "sravan" },
@@ -6,75 +6,81 @@ let users = JSON.parse(localStorage.getItem("users")) || [
   { email: "sai", password: "sai" }
 ];
 
-// Save updated users to localStorage
+// Save users to localStorage
 function saveUsers() {
   localStorage.setItem("users", JSON.stringify(users));
 }
 
-// Toggle forms (login <-> signup)
+// Toggle forms
 function toggleForms() {
   document.getElementById("signup-section").classList.toggle("active");
   document.getElementById("login-section").classList.toggle("active");
-  document.querySelector(".message").innerHTML = ""; // Clear message
+  document.querySelector(".message").style.display = "none";
 }
 
-// Handle Sign Up
-document.getElementById("signupForm").addEventListener("submit", function (e) {
+// Show messages
+function showMessage(text, type) {
+  const msg = document.querySelector(".message");
+  msg.innerHTML = text;
+  msg.className = "message " + type;
+  msg.style.display = "block";
+}
+
+// Wait until DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Sign Up Form
+  const signupForm = document.getElementById("signupForm");
+  signupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value.trim();
+
+    if (!email || !password) {
+      showMessage("❌ Please fill in all fields.", "error");
+      return;
+    }
+
+    if (users.some(user => user.email === email)) {
+      showMessage("❌ User already exists! Please login.", "error");
+      return;
+    }
+
+    users.push({ email, password });
+    saveUsers();
+    showMessage("✅ Account created successfully! Please login.", "success");
+
+    setTimeout(() => {
+      toggleForms();
+    }, 1500);
+  });
+
+  //Login Formm
+const loginForm = document.getElementById("loginForm");
+
+loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  const email = document.getElementById("signupEmail").value.trim();
-  const password = document.getElementById("signupPassword").value.trim();
-
-  // Check if user already exists
-  const userExists = users.some(user => user.email === email);
-
-  if (userExists) {
-    showMessage("User already exists! Please login.", "error");
-    return;
-  }
-
-  // Add new user
-  users.push({ email, password });
-  saveUsers();
-  showMessage("✅ Account created successfully! Please login.", "success");
-
-  // Switch to login form after 2 seconds
-  setTimeout(() => {
-    toggleForms();
-  }, 2000);
-});
-
-// Handle Login
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
   const loadingScreen = document.getElementById("loadingScreen");
 
-  // Check credentials
-  const validUser = users.find(user => user.email === email && user.password === password);
+  const validUser = users.find(u => u.email === email && u.password === password);
 
   if (validUser) {
-    showMessage("🎉 Login successful! Redirecting...", "success");
-
-    // Show loading spinner immediately
+    // Hide login form and show spinner
+    document.querySelector(".carousel-form-overlay .form-container").style.display = "none";
     loadingScreen.style.display = "flex";
 
-    // Redirect after 2 seconds
+    // Show spinner for 2 seconds, then redirect
     setTimeout(() => {
-      window.location.href = "../reciever/index.html";
-    }, 2000);
+      window.location.href = "../delivery/index.html";
+    }, 1500);
 
   } else {
     showMessage("❌ Invalid username or password. Try again.", "error");
   }
 });
 
-// Function to show nice messages
-function showMessage(text, type) {
-  let msg = document.querySelector(".message");
-  msg.innerHTML = text;
-  msg.className = "message " + type;
-  msg.style.display = "block";
-}
+
+
+});
