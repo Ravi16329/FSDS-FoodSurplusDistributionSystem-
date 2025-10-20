@@ -1,0 +1,355 @@
+/* ===== Root Colors & Global Settings ===== */
+:root {
+  --green: #5cb85c;
+  --dark-bg: #333;
+  --light-bg: #f7f9fc;
+  --text-light: #ddd;
+  --white: #fff;
+  --black: #000;
+  --transition: all 0.3s ease-in-out;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* ===== Navbar ===== */
+.site-header {
+  position: sticky;
+  top: 12px;
+  z-index: 60;
+  padding: 0 12px;
+}
+
+.navbar {
+  background: linear-gradient(90deg, rgba(43,147,72,0.95), rgba(255,190,11,0.95));
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(15,23,36,0.12);
+}
+
+.logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 6px 20px rgba(43, 147, 72, 0.12);
+  margin-right: 0.7rem;
+}
+
+.brand-title {
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.2px;
+  font-size: 1.15rem;
+}
+
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600;
+  margin: 0 0.4rem;
+  padding: 0.45rem 0.2rem;
+  transition: var(--transition);
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: #2c3e50 !important;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 8px;
+  transform: translateY(-1px);
+}
+
+.navbar .btn {
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.navbar .btn:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+/* ===== Hero Section (Slider) ===== */
+.slider-section .carousel-item img {
+  height: 70vh;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ===== Donor Overlay Section ===== */
+.donor-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  padding: 40px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 1100px;
+  z-index: 10;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.donor-overlay h2 {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.donor-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+  position: relative;
+  text-align: left;
+}
+
+.donor-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.donor-card h5 {
+  font-weight: 700;
+}
+
+.donor-card p {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.donor-card .btn-primary {
+  background-color: var(--green);
+  border: none;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.donor-card .btn-primary:hover {
+  background-color: #4aa84a;
+  transform: scale(1.05);
+}
+
+/* Distance Badge */
+.distance-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--green);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* ===== Certificates Section ===== */
+.certificates-section {
+  background-color: var(--light-bg);
+  padding: 60px 0;
+}
+
+.certificates-section h2 {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.certificate-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  transition: var(--transition);
+}
+
+.certificate-card img {
+  border-radius: 8px;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.certificate-card h5 {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.certificate-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* ===== Contact Section ===== */
+.section-dark {
+  background-color: var(--dark-bg);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.section-dark h2 {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.section-dark p,
+.section-dark li,
+.section-dark a,
+.section-dark address {
+  color: var(--text-light);
+}
+
+.section-dark a {
+  color: var(--green);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.section-dark a:hover {
+  text-decoration: underline;
+}
+
+/* Animated Background */
+.animated-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.red-ball,
+.white-ball {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.red-ball {
+  top: 0;
+  left: 0;
+  background: red;
+  animation: moveRed 8s linear infinite alternate;
+}
+
+.white-ball {
+  bottom: 0;
+  right: 0;
+  background: white;
+  animation: moveWhite 8s linear infinite alternate;
+}
+
+@keyframes moveRed {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(200px, 400px); }
+}
+
+@keyframes moveWhite {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-200px, -400px); }
+}
+
+/* ===== Footer ===== */
+.footer-section {
+  background-color: #222;
+  color: #aaa;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.footer-section p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ===== Donor Overlay Section ===== */
+.donor-overlay-section {
+  background: linear-gradient(135deg, #ffffff, #f5f5f5);
+  padding: 50px 20px;
+  border-radius: 16px;
+  max-width: 1200px;
+  margin: 40px auto;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.donor-overlay-section h2 {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* Donor Card */
+.donor-card {
+  background: #fff;
+  color: #333;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.donor-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Card Text */
+.donor-card h5 { font-weight: 700; font-size: 1.2rem; margin-bottom: 10px; }
+.donor-card p { font-size: 0.95rem; margin-bottom: 8px; }
+
+/* Navigate Button */
+.donor-card .btn-primary {
+  background-color: #27ae60;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 6px 14px;
+  transition: all 0.3s ease;
+}
+
+.donor-card .btn-primary:hover {
+  background-color: #219150;
+  transform: scale(1.05);
+}
+
+/* Distance Badge */
+.distance-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #27ae60;
+  color: white;
+  padding: 5px 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 20px;
+}
+
+/* Responsive */
+@media (max-width: 992px) { .donor-card { margin-bottom: 20px; } }
+@media (max-width: 576px) {
+  .donor-card h5 { font-size: 1rem; }
+  .donor-card p { font-size: 0.85rem; }
+  .distance-badge { font-size: 0.75rem; padding: 4px 10px; }
+}
+
+
+.collected {
+  opacity: 0.6;
+  background-color: #f8d7da; /* light red background */
+}

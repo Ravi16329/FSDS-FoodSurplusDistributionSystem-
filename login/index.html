@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receiver Login and Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo and Quote -->
+        <div class="logo-section">
+            <img src="../assets/favicon.ico" alt="Food Bank logo" class="logo-img">
+            <h1 class="quote">Let's Serve</h1>
+        </div>
+
+        <!-- Sign Up Section -->
+        <section id="signup-section" class="auth-section active">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <label for="signupEmail">Email:</label>
+                <input type="text" id="signupEmail" placeholder="Enter your username" required>
+                
+                <label for="signupPassword">Password:</label>
+                <input type="password" id="signupPassword" placeholder="Enter your password" required>
+                
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="toggleForms()">Login here</a></p>
+        </section>
+        
+        <!-- Login Section -->
+        <section id="login-section" class="auth-section">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="loginEmail">Email:</label>
+                <input type="text" id="loginEmail" placeholder="Enter your username" required>
+                
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="toggleForms()">Sign up here</a></p>
+        </section>
+
+        <div class="message"></div>
+
+
+    </div>
+
+    <div class="loading-screen" id="loadingScreen">
+  <div class="spinner"></div>
+  <p>Loading... Please wait</p>
+</div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

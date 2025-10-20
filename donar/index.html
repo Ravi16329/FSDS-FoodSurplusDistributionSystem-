@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Donation Website</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- External CSS -->
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="../assets/favicon.ico" alt="Food Bank logo" class="logo-img">
+                <span class="brand-title">Food Bank</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="mainNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://drive.google.com/drive/folders/1SE6KP96B-tP8TjadSKHQkrtIvCunNWwf?usp=sharing" target="_blank">Gallery Book</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#adress">Address</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+   <!-- Hero Section with Donation Form Overlay -->
+<section class="hero-section">
+  <div id="heroCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#heroCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#heroCarousel" data-slide-to="1"></li>
+      <li data-target="#heroCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Carousel Images -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../assets/image1.jpg" class="d-block w-100" alt="Banner 1">
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/image2.jpg" class="d-block w-100" alt="Banner 2">
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/image3.jpg" class="d-block w-100" alt="Banner 3">
+      </div>
+    </div>
+
+    <!-- Donation Form Overlay -->
+    <div class="carousel-caption d-flex justify-content-center align-items-center overlay-container">
+      <div class="card donation-card p-4 shadow">
+        <h2 class="text-center mb-4">Donate Food</h2>
+        <form id="donationForm">
+
+          <div class="form-group">
+            <label for="donorName" style="color:#FF5733;">Name</label>
+            <input type="text" class="form-control" id="donorName" placeholder="Enter your Name SIR" required>
+          </div>
+
+          <div class="form-group">
+            <label for="foodType" style="color:#FF5733;">Food Type</label>
+            <input type="text" class="form-control" id="foodType" placeholder="Type of food (e.g., Rice, Vegetables)" required>
+          </div>
+          <div class="form-group">
+            <label for="peopleCount" style="color:#FF5733;">Number of People Fed</label>
+            <input type="number" class="form-control" id="peopleCount" placeholder="Number of people this food can feed" min="1" required>
+          </div>
+          <div class="form-group">
+            <label for="mobileNumber" style="color:#FF5733;">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter your mobile number" pattern="[0-9]{10}" required>
+            <small class="form-text text-muted">Enter a 10-digit mobile number.</small>
+          </div>
+          <div class="form-group" style="color:#FF5733;">
+            <label for="donorAddress">Donor Address</label>
+            <textarea class="form-control" id="donorAddress" rows="2" placeholder="Enter your address" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success btn-block mt-3">Donate Now</button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- Carousel Controls -->
+    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="sr-only">Next</span>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- THANK YOU MESSAGE -->
+        <div id="thankYouMessage" class="text-center mt-4" style="display:none; font-size:1.3rem; color:#FF5733; font-weight:bold;"></div>
+        
+
+
+<!-- Track My Food Section -->
+<section id="track-my-food" class="track-food-section py-5">
+  <div class="container text-center">
+    <h2 class="mb-4">Track My Food</h2>
+    <p>Enter your donation ID or mobile number to see the status of your food donation.</p>
+    <form id="trackFoodForm" class="form-inline justify-content-center" onsubmit="redirectToTrackingPage(event)">
+      <div class="form-group mb-2">
+        <input type="text" class="form-control" id="donationId" placeholder="Enter your phone number" required>
+      </div>
+      <button type="submit" class="btn btn-primary mb-2 ml-2">Track My Food</button>
+    </form>
+  </div>
+</section>
+   
+
+    <!-- Certificates Section -->
+    <section class="certificates-section py-5">
+        <div class="container text-center">
+            <h2 class="mb-5">Our Certificates</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="certificate-card shadow">
+                        <img src="../assets/certificate1.jpg" alt="Certificate 1" class="img-fluid rounded">
+                        <h5 class="mt-3">Certificate of Excellence</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="certificate-card shadow">
+                        <img src="../assets/certificate2.jpg" alt="Certificate 2" class="img-fluid rounded">
+                        <h5 class="mt-3">Community Service Award</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="certificate-card shadow">
+                        <img src="../assets/certificate3.jpg" alt="Certificate 3" class="img-fluid rounded">
+                        <h5 class="mt-3">Food Safety Certification</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="donate" class="donate-section py-5 text-light">
+        <div class="container text-center">
+            <h2 class="mb-4">Support Our Mission</h2>
+            <p class="mb-4">Consider donating to help us reduce hunger and food waste. Choose an amount below, or enter a custom amount.</p>
+
+            <div class="donation-buttons mb-3">
+                <button class="btn btn-outline-success amount-btn" onclick="selectAmount(1000)">₹1000</button>
+                <button class="btn btn-outline-success amount-btn" onclick="selectAmount(2000)">₹2000</button>
+                <button class="btn btn-outline-success amount-btn" onclick="selectAmount(3000)">₹3000</button>
+                <button class="btn btn-outline-success amount-btn" onclick="selectAmount(4000)">₹4000</button>
+            </div>
+
+            <div class="custom-amount mb-3">
+                <input type="number" id="customAmount" class="form-control" placeholder="Enter custom amount" oninput="clearPredefinedAmount()">
+            </div>
+
+            <div class="payment-options mb-4">
+                <select class="form-control" id="paymentMethod">
+                    <option selected disabled>Select Payment Method</option>
+                    <option>Credit Card</option>
+                    <option>Debit Card</option>
+                    <option>UPI</option>
+                    <option>Net Banking</option>
+                </select>
+            </div>
+
+            <button class="btn btn-success btn-lg" onclick="processDonation()">Donate Now</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+<section id="contact" class="section section-dark d-flex align-items-center justify-content-center min-vh-100 text-light position-relative">
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="stickman"></div>
+    <div class="apple"></div>
+  </div>
+
+  <div class="container text-center content">
+    <h2 class="mb-5 text-uppercase">Get in Touch</h2>
+    <div class="row gy-4 flex-column align-items-center">
+
+      <div class="col-lg-6">
+        <h3>About Food Bank</h3>
+        <p>We connect restaurants, caterers, and individuals with NGOs and community centers to reduce food waste and feed people in need.</p>
+        <a class="btn btn-outline-light mt-3" href="#hero">Learn more</a>
+      </div>
+
+      <div class="col-lg-6">
+        <h4>Contact Us</h4>
+        <ul class="list-unstyled contact-list">
+          <li>📞 +91 63041 42318</li>
+          <li>📞 +91 90305 50431</li>
+          <li>✉ info@fooddonation.org</li>
+          <li>🌐 www.fooddonation.org</li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6" id="address">
+        <h4>Address</h4>
+        <address>VIT-AP University, Amaravathi, India</address>
+      </div>
+
+      <div class="col-lg-6">
+        <h4>Useful Links</h4>
+        <a href="https://ravi16329.github.io/VIT-AP-CGPA-ATTENDANCE-Calculator/" target="_blank">VIT-AP Calculator</a><br>
+        <a href="https://ravi16329.github.io/ToDoList/" target="_blank">To-Do List</a><br>
+        <a href="https://ravi16329.github.io/BANKING-SYSTEM/" target="_blank">Banking System</a><br>
+        <a href="https://ravi16329.github.io/MyProfile/" target="_blank">My Profile</a>
+      </div>
+    </div>
+    <div class="animated-bg">
+  <div class="red-ball"></div>
+  <div class="white-ball"></div>
+</div>
+
+  </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="footer-section py-3 text-center text-light">
+        <div class="container">
+            <p>&copy; 2024 Food Donation Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
