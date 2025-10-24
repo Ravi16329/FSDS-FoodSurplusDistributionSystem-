@@ -1,73 +1,51 @@
-// Sample Pickup Requests
-let pickups = [
-  { donor: "Ravi", address: "VIT-AP University", foodType: "Meals", quantity: 20, time: "10:00 AM", status: "Pending" },
-  { donor: "Sravan", address: "Amaravathi", foodType: "Snacks", quantity: 50, time: "11:30 AM", status: "Pending" },
-  { donor: "Sudheer", address: "Vijayawada", foodType: "Fruits", quantity: 30, time: "1:00 PM", status: "Pending" }
-];
+// delivery.js
 
-// Populate Table
-function renderTable() {
-  const tbody = document.querySelector("#pickupTable tbody");
-  tbody.innerHTML = "";
+document.addEventListener("DOMContentLoaded", displayPickupRequests);
 
-  pickups.forEach((p, index) => {
-    const tr = document.createElement("tr");
+function displayPickupRequests() {
+  const deliveryContainer = document.getElementById("deliveryContainer");
+  deliveryContainer.innerHTML = "";
 
-    tr.innerHTML = `
-      <td>${p.donor}</td>
-      <td>${p.address}</td>
-      <td>${p.foodType}</td>
-      <td>${p.quantity}</td>
-      <td>${p.time}</td>
-      <td>${p.status}</td>
-      <td>
-        ${p.status === "Pending" ? `<button class="btn btn-success btn-sm" onclick="acceptPickup(${index})">Accept</button>` : ""}
-        ${p.status === "In Progress" ? `<button class="btn btn-primary btn-sm" onclick="markDelivered(${index})">Delivered</button>` : ""}
-      </td>
+  const pickupRequests = JSON.parse(localStorage.getItem("pickupRequests")) || [];
+
+  if (pickupRequests.length === 0) {
+    deliveryContainer.innerHTML = `<p class="text-center text-muted">No pickup requests yet 🚫</p>`;
+    return;
+  }
+
+  pickupRequests.forEach((req, index) => {
+    const card = document.createElement("div");
+    card.classList.add("col-md-4", "mb-4");
+
+    card.innerHTML = `
+      <div class="delivery-card p-4 shadow rounded bg-light">
+        <h5>🍱 <strong>${req.foodType}</strong></h5>
+        <p><strong>Feeds:</strong> ${req.peopleCount} people</p>
+
+        <hr>
+        <h6>👤 Donor Details</h6>
+        <p><strong>Name:</strong> ${req.donorName}</p>
+        <p><i class="fas fa-map-marker-alt"></i> ${req.donorAddress}</p>
+
+        <hr>
+        <h6>📍 Receiver Details</h6>
+        ${req.receiverName ? `
+          <p><strong>Name:</strong> ${req.receiverName}</p>
+          <p><i class="fas fa-map-marker-alt"></i> ${req.receiverAddress}</p>
+        ` : `<p class="text-muted">Receiver info not available</p>`}
+
+        <hr>
+        <h6>🚚 Pickup Requested By</h6>
+        <p><strong>Name:</strong> ${req.requesterName}</p>
+        <p><i class="fas fa-map-marker-alt"></i> ${req.requesterAddress}</p>
+        <p><i class="fas fa-phone"></i> ${req.requesterPhone}</p>
+
+        <hr>
+        <p class="text-primary"><strong>Status:</strong> ${req.status}</p>
+        <p class="text-muted"><small>🕒 Requested on: ${req.time}</small></p>
+      </div>
     `;
 
-    tbody.appendChild(tr);
+    deliveryContainer.appendChild(card);
   });
-
-  updateStats();
 }
-
-// Update Stats
-function updateStats() {
-  const total = pickups.length;
-  const completed = pickups.filter(p => p.status === "Delivered").length;
-  const pending = pickups.filter(p => p.status === "Pending").length;
-
-  document.getElementById("totalPickups").textContent = total;
-  document.getElementById("completedDeliveries").textContent = completed;
-  document.getElementById("pendingPickups").textContent = pending;
-}
-
-// Accept Pickup
-function acceptPickup(index) {
-  const loadingScreen = document.getElementById("loadingScreen");
-  loadingScreen.style.display = "flex";
-
-  setTimeout(() => {
-    pickups[index].status = "In Progress";
-    loadingScreen.style.display = "none";
-    renderTable();
-  }, 1500);
-}
-
-// Mark Delivered
-function markDelivered(index) {
-  const loadingScreen = document.getElementById("loadingScreen");
-  loadingScreen.style.display = "flex";
-
-  setTimeout(() => {
-    pickups[index].status = "Delivered";
-    loadingScreen.style.display = "none";
-    renderTable();
-  }, 1500);
-}
-
-// Initialize
-document.addEventListener("DOMContentLoaded", () => {
-  renderTable();
-});

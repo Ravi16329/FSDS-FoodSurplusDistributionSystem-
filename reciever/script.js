@@ -1,4 +1,4 @@
-// Mark donation as collected
+// ✅ Mark donation as collected (unchanged)
 function markCollected(index) {
   let donations = JSON.parse(localStorage.getItem("donations")) || [];
   donations[index].isCollected = true;
@@ -6,28 +6,62 @@ function markCollected(index) {
   displayDonors();
 }
 
-// Open Google Maps for the given address
+// ✅ Open Google Maps for donor location (unchanged)
 function navigateToLocation(address) {
   const encodedAddress = encodeURIComponent(address);
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
   window.open(mapsUrl, "_blank");
 }
 
-// Pickup request alert (can be extended to backend later)
-function pickupRequest(address) {
-  alert(`📦 Pickup request sent for location: ${address}`);
+// ✅ Pickup Request — UPDATED FUNCTIONALITY
+function pickupRequest(index) {
+  let donations = JSON.parse(localStorage.getItem("donations")) || [];
+  const donation = donations[index];
+
+  // 🟢 Ask user details
+  const userName = prompt("Enter your name:");
+  const userAddress = prompt("Enter your address:");
+  const userPhone = prompt("Enter your phone number:");
+
+  if (!userName || !userAddress || !userPhone) {
+    alert("❌ Please fill all details before sending pickup request.");
+    return;
+  }
+
+  // Get existing pickup requests
+  let pickupRequests = JSON.parse(localStorage.getItem("pickupRequests")) || [];
+
+  // Prepare pickup request object
+  const pickupData = {
+    donorName: donation.donorName,
+    donorAddress: donation.donorAddress,
+    foodType: donation.foodType,
+    peopleCount: donation.peopleCount,
+    // 🟩 Added user details
+    requesterName: userName,
+    requesterAddress: userAddress,
+    requesterPhone: userPhone,
+    status: "Pending Pickup",
+    time: new Date().toLocaleString()
+  };
+
+  // Save the request
+  pickupRequests.push(pickupData);
+  localStorage.setItem("pickupRequests", JSON.stringify(pickupRequests));
+
+  alert("📦 Pickup request sent successfully!");
 }
 
-// Initialize sample donations if not already present
+// ✅ Initialize sample donations if not already present (unchanged)
 if (!localStorage.getItem("donations")) {
   localStorage.setItem("donations", JSON.stringify([
-    { donorName: "Ram", foodType: "rice, dal", peopleCount: 10, donorAddress: "Prakash Nagar", isCollected: false },
-    { donorName: "Swagath Restaurant", foodType: "chapati, curry", peopleCount: 20, donorAddress: "Madhura Nagar", isCollected: false },
-    { donorName: "Krishna", foodType: "noodles, fruits", peopleCount: 4, donorAddress: "Secunderabad", isCollected: false }
+    { donorName: "Ram", foodType: "Rice, Dal", peopleCount: 10, donorAddress: "Prakash Nagar", isCollected: false },
+    { donorName: "Swagath Restaurant", foodType: "Chapati, Curry", peopleCount: 20, donorAddress: "Madhura Nagar", isCollected: false },
+    { donorName: "Krishna", foodType: "Noodles, Fruits", peopleCount: 4, donorAddress: "Secunderabad", isCollected: false }
   ]));
 }
 
-// Display all donors dynamically
+// ✅ Display donors dynamically (unchanged)
 function displayDonors() {
   const donorContainer = document.getElementById("donorContainer");
   donorContainer.innerHTML = ""; // Clear previous content
@@ -63,7 +97,7 @@ function displayDonors() {
 
               <div class="mt-3">
                 <button class="btn btn-sm btn-primary w-100 pickup-request" 
-                  onclick="pickupRequest('${donation.donorAddress}')">
+                  onclick="pickupRequest(${index})">
                   PickUp Request
                 </button>
               </div>
@@ -76,5 +110,5 @@ function displayDonors() {
   });
 }
 
-// Initialize display on page load
+// ✅ Initialize on load
 document.addEventListener("DOMContentLoaded", displayDonors);

@@ -73,57 +73,14 @@
   </div>
 </section>
 
-<!-- Dashboard Section -->
-<section class="container my-4">
-  <h2>Welcome, <span id="agentName">Delivery Agent</span>!</h2>
-
-  <!-- Stats Cards -->
-  <div class="row my-3">
-    <div class="col-md-4">
-      <div class="card text-center stats-card">
-        <h4>Total Pickups</h4>
-        <p id="totalPickups">0</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card text-center stats-card">
-        <h4>Completed Deliveries</h4>
-        <p id="completedDeliveries">0</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card text-center stats-card">
-        <h4>Pending Pickups</h4>
-        <p id="pendingPickups">0</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pickup Requests Table -->
-  <h3>Pickup Requests</h3>
-  <table class="table table-striped" id="pickupTable">
-    <thead class="thead-dark">
-      <tr>
-        <th>Donor Name</th>
-        <th>Address</th>
-        <th>Food Type</th>
-        <th>Quantity</th>
-        <th>Pickup Time</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Dynamic rows added by JS -->
-    </tbody>
-  </table>
-
-  <!-- Map Placeholder -->
-  <h3>Map</h3>
-  <div id="mapPlaceholder">
-    <p class="text-center">[Map will be here]</p>
+<section>
+  <div class="container py-5">
+    <h2 class="text-center mb-4">🚚 Delivery Requests</h2>
+    <div class="row" id="deliveryContainer"></div>
   </div>
 </section>
+
+
 
 
 
