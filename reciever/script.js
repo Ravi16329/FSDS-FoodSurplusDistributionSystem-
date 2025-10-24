@@ -18,7 +18,16 @@ function pickupRequest(address) {
   alert(`📦 Pickup request sent for location: ${address}`);
 }
 
-// Display all donors
+// Initialize sample donations if not already present
+if (!localStorage.getItem("donations")) {
+  localStorage.setItem("donations", JSON.stringify([
+    { donorName: "Ram", foodType: "rice, dal", peopleCount: 10, donorAddress: "Prakash Nagar", isCollected: false },
+    { donorName: "Swagath Restaurant", foodType: "chapati, curry", peopleCount: 20, donorAddress: "Madhura Nagar", isCollected: false },
+    { donorName: "Krishna", foodType: "noodles, fruits", peopleCount: 4, donorAddress: "Secunderabad", isCollected: false }
+  ]));
+}
+
+// Display all donors dynamically
 function displayDonors() {
   const donorContainer = document.getElementById("donorContainer");
   donorContainer.innerHTML = ""; // Clear previous content
@@ -53,7 +62,7 @@ function displayDonors() {
               </div>
 
               <div class="mt-3">
-                <button id="pickuprequst" class="btn btn-sm btn-primary w-100" 
+                <button class="btn btn-sm btn-primary w-100 pickup-request" 
                   onclick="pickupRequest('${donation.donorAddress}')">
                   PickUp Request
                 </button>
