@@ -41,12 +41,13 @@ function displayDonors() {
           donation.isCollected
             ? `<p class="text-danger fw-bold">❌ Food Already Collected</p>`
             : `
-              <div class="d-flex flex-wrap gap-2 mt-2">
-                <button class="btn btn-outline-info btn-sm" style="margin-left:10px;"
+              <div class="d-flex gap-2 mt-2">
+                <button class="btn btn-outline-info btn-sm flex-fill"
                   onclick="navigateToLocation('${donation.donorAddress}')">
                   Navigate
                 </button>
-                <button class="btn btn-success btn-sm" onclick="markCollected(${index})" style="margin-left:40px;">
+                <button class="btn btn-success btn-sm flex-fill"
+                  onclick="markCollected(${index})">
                   Mark as Collected
                 </button>
               </div>
