@@ -275,3 +275,17 @@
 }
 
 
+#signout {
+  margin-left:450px;
+  color: white;
+  border-color: red;
+  background-color: red;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#signout:hover {
+  background-color: darkred;
+  border-color: darkred;
+  color: #fff;
+}

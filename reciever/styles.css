@@ -353,3 +353,19 @@ body {
   opacity: 0.6;
   background-color: #f8d7da; /* light red background */
 }
+
+
+#signout {
+  margin-left:400px;
+  color: white;
+  border-color: red;
+  background-color: red;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#signout:hover {
+  background-color: darkred;
+  border-color: darkred;
+  color: #fff;
+}
