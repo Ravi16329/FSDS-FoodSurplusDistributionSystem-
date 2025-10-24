@@ -369,3 +369,17 @@ body {
   border-color: darkred;
   color: #fff;
 }
+
+/* pICKUP REQUEST BUTTON*/
+
+#pickuprequst {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+  font-weight: 500;
+}
+
+#pickuprequst:hover {
+  background-color: #0056b3;
+  border-color: #004999;
+}
