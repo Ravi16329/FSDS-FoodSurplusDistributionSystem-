@@ -34,7 +34,7 @@ document.getElementById('donationForm').addEventListener('submit', function(even
         <span style="color:#ffc107;">${foodType}</span> for 
         <span style="color:#17a2b8;">${peopleCount}</span> people!<br>
         God bless you, my dear donor ❤️❤️❤️<br>
-        You won <span style="color:#ff4d4d;">LACKS OF HEARTS</span> 💖💖💖
+        You won <span style="color:#ff4d4d;">LAKHS OF HEARTS</span> 💖💖💖
     `;
 
     // Reset the form
